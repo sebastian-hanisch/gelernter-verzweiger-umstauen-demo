@@ -1,7 +1,6 @@
 # Gelernter Verzweiger: lernt die Suche, wohin zuerst? – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-gelernter-verzweiger-umstauen-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-gelernter-verzweiger-umstauen-demo.streamlit.app/)**
 
 Vierzehntes Stück (gelb) der Konzepte-Reihe **„Umstauen: Untergrenze und Suche“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Die Suche aus Stück 5 und 9 probiert die **Kinder** (wohin kommt der Blocker?) in der Reihenfolge der **„engsten Passung“** aus Stück 1. Kann ein **gelernter Verzweiger** besser ordnen? Und was spart **selbst ein perfektes Orakel** höchstens? Die Demo **rechnet das live** an einer Bucht und misst vorberechnet: Die Suche besteht aus dem **Beweis** (alle Budgetstufen vor der letzten: der ganze Baum bis zum Budget wird abgesucht, egal in welcher Reihenfolge) und dem **Fund** (die letzte Stufe, bis zum ersten Blatt). Eine gute Reihenfolge verkürzt nur den **Fund**.
 
