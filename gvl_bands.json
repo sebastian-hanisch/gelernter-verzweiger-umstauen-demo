@@ -1,0 +1,406 @@
+{
+ "beweis": {
+  "4,3": {
+   "n": 100,
+   "n_ok": 100,
+   "orders": {
+    "fit": {
+     "find_median": 7.0,
+     "find_sum": 908,
+     "nodes_median": 8.0,
+     "nodes_sum": 1667,
+     "proof_sum": 759
+    },
+    "learned": {
+     "find_median": 7.0,
+     "find_sum": 968,
+     "nodes_median": 8.0,
+     "nodes_sum": 1727,
+     "proof_sum": 759
+    },
+    "random": {
+     "find_median": 11.0,
+     "find_sum": 1403,
+     "nodes_median": 11.0,
+     "nodes_sum": 2171,
+     "proof_sum": 768
+    },
+    "worst": {
+     "find_median": 16.0,
+     "find_sum": 2284,
+     "nodes_median": 16.5,
+     "nodes_sum": 3055,
+     "proof_sum": 771
+    }
+   },
+   "proof_share": 0.4553089382123575
+  },
+  "4,4": {
+   "n": 100,
+   "n_ok": 100,
+   "orders": {
+    "fit": {
+     "find_median": 14.0,
+     "find_sum": 5964,
+     "nodes_median": 76.5,
+     "nodes_sum": 21544,
+     "proof_sum": 15580
+    },
+    "learned": {
+     "find_median": 24.5,
+     "find_sum": 6304,
+     "nodes_median": 83.5,
+     "nodes_sum": 22595,
+     "proof_sum": 16291
+    },
+    "random": {
+     "find_median": 43.5,
+     "find_sum": 9539,
+     "nodes_median": 102.5,
+     "nodes_sum": 26700,
+     "proof_sum": 17161
+    },
+    "worst": {
+     "find_median": 83.5,
+     "find_sum": 19281,
+     "nodes_median": 120.0,
+     "nodes_sum": 37309,
+     "proof_sum": 18028
+    }
+   },
+   "proof_share": 0.7231711845525436
+  },
+  "5,3": {
+   "n": 100,
+   "n_ok": 100,
+   "orders": {
+    "fit": {
+     "find_median": 8.0,
+     "find_sum": 921,
+     "nodes_median": 9.0,
+     "nodes_sum": 2955,
+     "proof_sum": 2034
+    },
+    "learned": {
+     "find_median": 8.0,
+     "find_sum": 1075,
+     "nodes_median": 10.0,
+     "nodes_sum": 3109,
+     "proof_sum": 2034
+    },
+    "random": {
+     "find_median": 14.0,
+     "find_sum": 3705,
+     "nodes_median": 16.0,
+     "nodes_sum": 5767,
+     "proof_sum": 2062
+    },
+    "worst": {
+     "find_median": 22.5,
+     "find_sum": 5352,
+     "nodes_median": 26.0,
+     "nodes_sum": 7422,
+     "proof_sum": 2070
+    }
+   },
+   "proof_share": 0.6883248730964467
+  },
+  "5,4": {
+   "n": 60,
+   "n_ok": 60,
+   "orders": {
+    "fit": {
+     "find_median": 15.5,
+     "find_sum": 28489,
+     "nodes_median": 138.0,
+     "nodes_sum": 77285,
+     "proof_sum": 48796
+    },
+    "learned": {
+     "find_median": 25.0,
+     "find_sum": 33260,
+     "nodes_median": 141.0,
+     "nodes_sum": 84578,
+     "proof_sum": 51318
+    },
+    "random": {
+     "find_median": 98.5,
+     "find_sum": 31601,
+     "nodes_median": 204.5,
+     "nodes_sum": 86676,
+     "proof_sum": 55075
+    },
+    "worst": {
+     "find_median": 245.5,
+     "find_sum": 62712,
+     "nodes_median": 401.0,
+     "nodes_sum": 119658,
+     "proof_sum": 56946
+    }
+   },
+   "proof_share": 0.6313773694766125
+  },
+  "6,3": {
+   "n": 60,
+   "n_ok": 60,
+   "orders": {
+    "fit": {
+     "find_median": 9.0,
+     "find_sum": 551,
+     "nodes_median": 11.0,
+     "nodes_sum": 1811,
+     "proof_sum": 1260
+    },
+    "learned": {
+     "find_median": 9.0,
+     "find_sum": 721,
+     "nodes_median": 11.0,
+     "nodes_sum": 1981,
+     "proof_sum": 1260
+    },
+    "random": {
+     "find_median": 18.5,
+     "find_sum": 2551,
+     "nodes_median": 22.5,
+     "nodes_sum": 3811,
+     "proof_sum": 1260
+    },
+    "worst": {
+     "find_median": 43.0,
+     "find_sum": 4839,
+     "nodes_median": 47.0,
+     "nodes_sum": 6099,
+     "proof_sum": 1260
+    }
+   },
+   "proof_share": 0.6957482054113749
+  }
+ },
+ "modell": {
+  "accuracy": 0.790590405904059,
+  "cells": [
+   [
+    3,
+    3,
+    100
+   ],
+   [
+    4,
+    3,
+    100
+   ],
+   [
+    5,
+    3,
+    60
+   ],
+   [
+    4,
+    4,
+    40
+   ]
+  ],
+  "n_children": 5420,
+  "seed0": 1000,
+  "share_optimal": 0.6437269372693727,
+  "weights": [
+   1.0566645404841144,
+   2.444757516597844,
+   0.4357309620318211,
+   0.36442384053336585,
+   -1.3465416268140957,
+   -1.3880929761457321,
+   -0.6079451830275867
+  ]
+ },
+ "orakel": {
+  "4,3": {
+   "n": 100,
+   "n_ok": 100,
+   "orders": {
+    "fit": {
+     "find_median": 7.0,
+     "find_sum": 908,
+     "nodes_median": 8.0,
+     "nodes_sum": 1667,
+     "proof_sum": 759
+    },
+    "learned": {
+     "find_median": 7.0,
+     "find_sum": 968,
+     "nodes_median": 8.0,
+     "nodes_sum": 1727,
+     "proof_sum": 759
+    },
+    "oracle": {
+     "find_median": 7.0,
+     "find_sum": 681,
+     "nodes_median": 8.0,
+     "nodes_sum": 1440,
+     "proof_sum": 759
+    },
+    "random": {
+     "find_median": 11.0,
+     "find_sum": 1403,
+     "nodes_median": 11.0,
+     "nodes_sum": 2171,
+     "proof_sum": 768
+    },
+    "worst": {
+     "find_median": 16.0,
+     "find_sum": 2284,
+     "nodes_median": 16.5,
+     "nodes_sum": 3055,
+     "proof_sum": 771
+    }
+   },
+   "proof_share": 0.4553089382123575
+  },
+  "4,4": {
+   "n": 60,
+   "n_ok": 60,
+   "orders": {
+    "fit": {
+     "find_median": 23.0,
+     "find_sum": 4485,
+     "nodes_median": 84.0,
+     "nodes_sum": 14420,
+     "proof_sum": 9935
+    },
+    "learned": {
+     "find_median": 26.0,
+     "find_sum": 4493,
+     "nodes_median": 85.5,
+     "nodes_sum": 14897,
+     "proof_sum": 10404
+    },
+    "oracle": {
+     "find_median": 11.0,
+     "find_sum": 668,
+     "nodes_median": 53.5,
+     "nodes_sum": 10913,
+     "proof_sum": 10245
+    },
+    "random": {
+     "find_median": 40.0,
+     "find_sum": 5428,
+     "nodes_median": 102.5,
+     "nodes_sum": 16268,
+     "proof_sum": 10840
+    },
+    "worst": {
+     "find_median": 68.0,
+     "find_sum": 12108,
+     "nodes_median": 125.5,
+     "nodes_sum": 23505,
+     "proof_sum": 11397
+    }
+   },
+   "proof_share": 0.6889736477115118
+  },
+  "5,3": {
+   "n": 100,
+   "n_ok": 100,
+   "orders": {
+    "fit": {
+     "find_median": 8.0,
+     "find_sum": 921,
+     "nodes_median": 9.0,
+     "nodes_sum": 2955,
+     "proof_sum": 2034
+    },
+    "learned": {
+     "find_median": 8.0,
+     "find_sum": 1075,
+     "nodes_median": 10.0,
+     "nodes_sum": 3109,
+     "proof_sum": 2034
+    },
+    "oracle": {
+     "find_median": 8.0,
+     "find_sum": 794,
+     "nodes_median": 8.5,
+     "nodes_sum": 2836,
+     "proof_sum": 2042
+    },
+    "random": {
+     "find_median": 14.0,
+     "find_sum": 3705,
+     "nodes_median": 16.0,
+     "nodes_sum": 5767,
+     "proof_sum": 2062
+    },
+    "worst": {
+     "find_median": 22.5,
+     "find_sum": 5352,
+     "nodes_median": 26.0,
+     "nodes_sum": 7422,
+     "proof_sum": 2070
+    }
+   },
+   "proof_share": 0.6883248730964467
+  },
+  "5,4": {
+   "n": 40,
+   "n_ok": 40,
+   "orders": {
+    "fit": {
+     "find_median": 17.0,
+     "find_sum": 28069,
+     "nodes_median": 134.5,
+     "nodes_sum": 61598,
+     "proof_sum": 33529
+    },
+    "learned": {
+     "find_median": 24.0,
+     "find_sum": 29797,
+     "nodes_median": 122.0,
+     "nodes_sum": 65019,
+     "proof_sum": 35222
+    },
+    "oracle": {
+     "find_median": 13.0,
+     "find_sum": 539,
+     "nodes_median": 79.5,
+     "nodes_sum": 35152,
+     "proof_sum": 34613
+    },
+    "random": {
+     "find_median": 86.5,
+     "find_sum": 25290,
+     "nodes_median": 163.5,
+     "nodes_sum": 62703,
+     "proof_sum": 37413
+    },
+    "worst": {
+     "find_median": 205.0,
+     "find_sum": 40064,
+     "nodes_median": 278.0,
+     "nodes_sum": 78939,
+     "proof_sum": 38875
+    }
+   },
+   "proof_share": 0.544319620766908
+  }
+ },
+ "top1": {
+  "4,3": {
+   "fit": 169,
+   "learned": 166,
+   "random": 112,
+   "states": 170
+  },
+  "4,4": {
+   "fit": 195,
+   "learned": 189,
+   "random": 124,
+   "states": 213
+  },
+  "5,3": {
+   "fit": 211,
+   "learned": 206,
+   "random": 129,
+   "states": 213
+  }
+ }
+}
