@@ -2,7 +2,7 @@
 Sebastian Hanisch - Operations Research und Machine Learning
 
 Stück 14 der Reihe „Umstauen: Untergrenze und Suche“ (gelb). Die Suche aus Stück 5 und 9 probiert die Kinder in der Reihenfolge der „engsten Passung“. Hier die Frage, ob ein gelernter
-Verzweiger besser ordnet, und was selbst ein perfektes Orakel höchstens sparen kann: Es spart nur im Fund (letzte Budgetstufe), nicht im Beweis (alle Stufen davor).
+Verzweiger besser ordnet, und was selbst ein perfektes Orakel höchstens sparen kann: Es spart praktisch nur im Fund (letzte Budgetstufe), nicht im Beweis (alle Stufen davor).
 
 Lauffähig mit: streamlit run app.py
 """
@@ -56,7 +56,7 @@ with st.container(key="kopf"):
     st.title("🧭 Gelernter Verzweiger: lernt die Suche, wohin zuerst?")
 st.markdown(
     """
-Die Suche aus Stück 5 und 9 probiert die **Kinder** (wohin kommt der Blocker?) in der Reihenfolge der **„engsten Passung“**. Kann ein **gelernter Verzweiger** besser ordnen? Und was spart **selbst ein perfektes Orakel** höchstens? Die Demo **rechnet das live** an einer Bucht und misst vorberechnet: Die Suche besteht aus dem **Beweis** (alle Budgetstufen vor der letzten: der ganze Baum bis zum Budget wird abgesucht, egal in welcher Reihenfolge) und dem **Fund** (die letzte Stufe, bis zum ersten Blatt). Eine gute Reihenfolge verkürzt nur den **Fund**.
+Die Suche aus Stück 5 und 9 probiert die **Kinder** (wohin kommt der Blocker?) in der Reihenfolge der **„engsten Passung“**. Kann ein **gelernter Verzweiger** besser ordnen? Und was spart **selbst ein perfektes Orakel** höchstens? Die Demo **rechnet das live** an einer Bucht und misst vorberechnet: Die Suche besteht aus dem **Beweis** (alle Budgetstufen vor der letzten: der Baum bis zum Budget wird bis auf den Einfluss der Zustandsmerken, hier bis etwa 16 % in einer Zelle und 20 % in einer Bucht, unabhängig von der Reihenfolge abgesucht) und dem **Fund** (die letzte Stufe, bis zum ersten Blatt). Eine gute Reihenfolge kann im Wesentlichen nur den **Fund** verkürzen.
 
 Weiter unten: die Abschnitte **🔬 Experiment** (das Modell, wie viel im Beweis steckt, Orakel und gelernter Verzweiger), **🚧 Wo die Annahmen enden** und der Expander **📐 Mathematische Formulierung**. Dies ist das vierzehnte Stück der Reihe „Umstauen: Untergrenze und Suche“ (gelb).
 """
@@ -111,7 +111,7 @@ if oracle is None:
     m4.metric("Orakel", "nicht gerechnet", delta=f"über {C.ORACLE_MAX_CONTAINERS} Container", delta_color="off")
 else:
     m4.metric("Orakel", "am Limit" if oracle.capped else num(oracle.nodes), delta=None if oracle.capped or fit.capped else signed_percent_text(oracle.nodes / fit.nodes - 1), delta_color="off",
-              help="Knoten mit der Reihenfolge nach dem wahren Wert jedes Kindes: die Obergrenze jedes Verzweigers.")
+              help="Knoten mit der Reihenfolge nach dem wahren Wert jedes Kindes: ein Richtwert für die Obergrenze.")
 m5.metric("Beweisanteil", "–" if fit.capped else percent_text(fit.proof / fit.nodes), delta="Engste Passung", delta_color="off", help="Anteil der Knoten vor der letzten Stufe.")
 st.plotly_chart(build_bay(a.bay, a.height, target=min(c for s in a.bay for c in s)), width="stretch", key="chart_bay")
 st.caption("Rot: blockierende Container (liegen über einem früher abzurufenden), grün: der nächste Abruf, grau-blau: alle übrigen.")
@@ -172,7 +172,7 @@ st.markdown("---")
 # --- Experiment: Orakel und gelernter Verzweiger ------------------------------------------------------------------------------------------------------
 
 st.subheader("🔬 Experiment: Orakel und gelernter Verzweiger")
-st.caption("Summe der Knoten über alle Stufen / über die letzte Stufe (den Fund). Das Orakel kennt den wahren Wert jedes Kindes: sein Abstand zur Engsten Passung ist die Obergrenze jedes Verzweigers.")
+st.caption("Summe der Knoten über alle Stufen / über die letzte Stufe (den Fund). Das Orakel kennt den wahren Wert jedes Kindes: sein Abstand zur Engsten Passung ist ein Richtwert für die Obergrenze, keine strenge Schranke.")
 tb = ["| Zelle (Buchten) | Engste Passung | gelernt | Orakel | zufällig | gelernt gegenüber Engster Passung | Orakel gegenüber Engster Passung |", "|---|---|---|---|---|---|---|"]
 for s_, l_, n_ in C.ORACLE_CELLS:
     c = orakel[key(s_, l_)]
@@ -198,7 +198,7 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist | Wer setzt an |
 |---|---|---|
-| **Ein einfaches Modell** | Eine logistische Regression auf sieben Merkmalen; ein stärkeres Modell (zum Beispiel ein neuronales Netz mit Merkmalen der ganzen Bucht) wurde nicht gebaut. Das Orakel zeigt, wie viel höchstens zu holen wäre (bis 43 % der Knoten in 5 × 4), nicht, ob es erreichbar ist. | – |
+| **Ein einfaches Modell** | Eine logistische Regression auf sieben Merkmalen; ein stärkeres Modell (zum Beispiel ein neuronales Netz mit Merkmalen der ganzen Bucht) wurde nicht gebaut. Das Orakel gibt einen Richtwert, wie viel zu holen wäre (bis 43 % der Knoten in 5 × 4; keine strenge Schranke), nicht, ob es erreichbar ist. | – |
 | **Nur Knoten, keine Zeiten** | Der gelernte Verzweiger kostet je Kind eine Auswertung, das Orakel je Kind eine Suche; die Knotenzahl der Suche ist nicht die ganze Rechenzeit. | – |
 | **Restricted Relocation mit LB2** | Mit schwächerer Untergrenze (Stück 5: LB1) ändert sich der Beweisanteil; beim Pre-Marshalling (Stück 11) gilt die Messung nicht. | Stück 5, 11 |
 | **Volle Buchten, Platz 2** | Training auf 3 × 3 bis 5 × 3 und 4 × 4; größere Buchten und anderer Platz sind nicht gemessen. | – |
@@ -213,9 +213,9 @@ with st.expander("📐 Mathematische Formulierung"):
         r"""
 **Suche.** IDA\* mit zulässiger Untergrenze $h$ (LB2, Stück 9): Für $b = h(s_0), h(s_0) + 1, \dots$ eine Tiefensuche, die einen Knoten bei $g + h > b$ abschneidet. Die erste Stufe $b^\*$, in der ein Blatt (leere Bucht) erreicht wird, ist das Optimum: $b^\* = \text{OPT}$.
 
-**Beweis und Fund.** Jede Stufe $b < \text{OPT}$ findet kein Blatt und durchsucht deshalb den ganzen Baum $\{ s : g(s) + h(s) \le b \}$ (bis auf die Zustandsmerken). Ihre Knotenzahl hängt **nicht** von der Reihenfolge der Kinder ab (bis auf Unterschiede der Zustandsmerken). Nur die letzte Stufe $b = \text{OPT}$ bricht beim ersten Blatt ab; hier entscheidet die Reihenfolge, wie früh das Blatt kommt.
+**Beweis und Fund.** Jede Stufe $b < \text{OPT}$ findet kein Blatt und durchsucht deshalb den ganzen Baum $\{ s : g(s) + h(s) \le b \}$ (bis auf die Zustandsmerken). Ihre Knotenzahl hängt **kaum** von der Reihenfolge der Kinder ab (bis auf Unterschiede der Zustandsmerken, die die Beweisgröße je nach Reihenfolge um bis zu etwa 16 % in einer Zelle und 20 % in einer Bucht ändern). Nur die letzte Stufe $b = \text{OPT}$ bricht beim ersten Blatt ab; hier entscheidet die Reihenfolge, wie früh das Blatt kommt.
 
-**Obergrenze eines Verzweigers.** Ein Orakel, das in jedem Zustand die Kinder nach ihrem wahren Wert $V(c)$ ordnet, findet in der letzten Stufe das Blatt auf geradem Weg. Kein Verzweiger kann in der letzten Stufe mehr sparen als das Orakel, und in den Stufen davor gar nichts: $\text{Knoten}_{\text{Verzweiger}} \ge \text{Beweis} + \text{Fund}_{\text{Orakel}}$ (bis auf die Zustandsmerken).
+**Richtwert für die Obergrenze.** Ein Orakel, das in jedem Zustand die Kinder nach ihrem wahren Wert $V(c)$ ordnet, findet in der letzten Stufe das Blatt auf geradem Weg. Im Fund kann kein Verzweiger weniger Knoten brauchen als das Orakel, und in den Stufen davor spart eine Reihenfolge bis auf die Zustandsmerken nichts: $\text{Knoten}_{\text{Verzweiger}} \ge \text{Beweis} + \text{Fund}_{\text{Orakel}}$, wobei der Beweis der des jeweiligen Verzweigers ist (bis auf die Zustandsmerken). Das Orakel ist deshalb ein Richtwert, keine strenge Schranke: In der Bucht 4 × 4, Nr. 23 braucht es insgesamt mehr Knoten als die Regel.
 
 **Gelernter Verzweiger.** Je Zustand $s$ auf einem optimalen Weg und je Kind $c$ ein Merkmalsvektor $x_c \in \mathbb{R}^7$ und das Etikett $y_c = 1$, wenn $V(c) = \min_{c'} V(c')$. Logistische Regression: $P(y = 1 \mid x) = 1 / (1 + e^{-w^\top x})$, $w$ durch das Newton-Verfahren (L2-Strafe $10^{-2}$, Startwert 0). Die Reihenfolge der Kinder: absteigend nach $w^\top x_c$.
 

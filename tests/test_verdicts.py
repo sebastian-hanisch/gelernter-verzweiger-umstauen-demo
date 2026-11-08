@@ -59,14 +59,14 @@ def test_proof_verdict_two_states_and_numbers():
     assert kind == "info" and text == ("4 × 3: Von 1 667 Knoten der Engsten Passung stecken 759 im Beweis und 908 im Fund: der Beweis ist 46 %. "
                                        "Der Fund ist der größere Teil: Eine bessere Reihenfolge hat hier mehr Spielraum.")
     kind, text = ev.verdict_proof(_stats(21544, 5964), "4 × 4")
-    assert kind == "warning" and text.endswith("Der Beweis dominiert: Kein Verzweiger kann mehr als den Fund sparen.") and "der Beweis ist 72 %" in text
+    assert kind == "warning" and text.endswith("Der Beweis dominiert: Eine bessere Reihenfolge kann kaum mehr als den Fund sparen.") and "der Beweis ist 72 %" in text
     assert ev.verdict_proof(_stats(1000, 500), "x")[0] == "warning" and ev.verdict_proof(_stats(1000, 501), "x")[0] == "info" and C.PROOF_DOMINATES == 0.5      # genau die Hälfte zählt
 
 
 def test_learning_verdict_three_states_and_numbers():
     kind, text = ev.verdict_learning(_stats(1000, 300, learned=1040, oracle=860), "5 × 3")
     assert kind == "warning" and text == ("5 × 3: Gegenüber der Engsten Passung (1 000 Knoten) braucht der gelernte Verzweiger +4,0 % Knoten und das Orakel −14 %; "
-                                          "das Orakel ist die Obergrenze jedes Verzweigers. Der gelernte Verzweiger ist hier schlechter als die Regel.")
+                                          "das Orakel ist ein Richtwert für die Obergrenze. Der gelernte Verzweiger ist hier schlechter als die Regel.")
     kind, text = ev.verdict_learning(_stats(learned=940, oracle=500), "x")
     assert kind == "success" and "−6,0 % Knoten und das Orakel −50 %" in text and text.endswith("Der gelernte Verzweiger spart hier spürbar Knoten.")
     kind, text = ev.verdict_learning(_stats(learned=1000, oracle=700), "x")

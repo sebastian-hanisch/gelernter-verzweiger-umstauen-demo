@@ -2,11 +2,11 @@
 
 **[→ Demo live ausprobieren](https://sebastianhanisch-gelernter-verzweiger-umstauen-demo.streamlit.app/)**
 
-Vierzehntes Stück (gelb) der Konzepte-Reihe **„Umstauen: Untergrenze und Suche“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Die Suche aus Stück 5 und 9 probiert die **Kinder** (wohin kommt der Blocker?) in der Reihenfolge der **„engsten Passung“** aus Stück 1. Kann ein **gelernter Verzweiger** besser ordnen? Und was spart **selbst ein perfektes Orakel** höchstens? Die Demo **rechnet das live** an einer Bucht und misst vorberechnet: Die Suche besteht aus dem **Beweis** (alle Budgetstufen vor der letzten: der ganze Baum bis zum Budget wird abgesucht, egal in welcher Reihenfolge) und dem **Fund** (die letzte Stufe, bis zum ersten Blatt). Eine gute Reihenfolge verkürzt nur den **Fund**.
+Vierzehntes Stück (gelb) der Konzepte-Reihe **„Umstauen: Untergrenze und Suche“** für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Die Suche aus Stück 5 und 9 probiert die **Kinder** (wohin kommt der Blocker?) in der Reihenfolge der **„engsten Passung“** aus Stück 1. Kann ein **gelernter Verzweiger** besser ordnen? Und was spart **selbst ein perfektes Orakel** höchstens? Die Demo **rechnet das live** an einer Bucht und misst vorberechnet: Die Suche besteht aus dem **Beweis** (alle Budgetstufen vor der letzten: der Baum bis zum Budget wird bis auf den Einfluss der Zustandsmerken, hier bis etwa 16 % in einer Zelle und 20 % in einer Bucht, unabhängig von der Reihenfolge abgesucht) und dem **Fund** (die letzte Stufe, bis zum ersten Blatt). Eine gute Reihenfolge kann im Wesentlichen nur den **Fund** verkürzen.
 
 ## Warum dieses Problem
 
-Gelernte Verzweiger sind ein aktueller Strang bei Relocation und Pre-Marshalling (Literaturtreffer 2025; Hottung, Tanaka, Tierney 2020; nicht gelesen). Hier die Frage, was sie **gegen die Untergrenze** bringen: Die Messung stellt den gelernten Verzweiger zwischen zwei Grenzen. Die **Regel „engste Passung“** ist schon fast so gut wie das **Orakel**, das den Wert jedes Kindes kennt: Sie probiert in 92 bis 99 % der Zustände auf optimalen Wegen ein optimales Kind zuerst. Ein **gelernter** Verzweiger (logistische Regression auf sieben Merkmalen, 79 % Trefferquote beim Training) ist **nicht besser** als die Regel (3 bis 6 % mehr Knoten). Und selbst das **perfekte** Orakel spart nur in der **letzten** Stufe: Die Stufen davor (der **Beweis**, dass kein Weg mit kleinerem Budget existiert) durchsucht die Suche vollständig. **Lernen verkürzt den Fund, nicht den Beweis.**
+Gelernte Verzweiger sind ein aktueller Strang bei Relocation und Pre-Marshalling (Literaturtreffer 2025; Hottung, Tanaka, Tierney 2020; nicht gelesen). Hier die Frage, was sie **gegen die Untergrenze** bringen: Die Messung stellt den gelernten Verzweiger neben die Regel und das Orakel: schlechter als beide, meist besser als eine zufällige Reihenfolge. Die **Regel „engste Passung“** wählt auf einem optimalen Weg in 92 bis 99 % der Zustände ein optimales Kind zuerst, bleibt aber in Knoten deutlich hinter dem **Orakel**, das den Wert jedes Kindes kennt: Das Orakel spart gegenüber der Regel 4 bis 43 % der Knoten. Ein **gelernter** Verzweiger (logistische Regression auf sieben Merkmalen, 79 % Trefferquote beim Training) ist **nicht besser** als die Regel (3 bis 9 % mehr Knoten in den fünf gemessenen Zellen). Und selbst das **perfekte** Orakel spart praktisch nur in der **letzten** Stufe: Die Stufen davor (der **Beweis**, dass kein Weg mit kleinerem Budget existiert) durchsucht die Suche bis auf die Zustandsmerken vollständig; dort spart das Orakel nichts und kostet teils leicht mehr. **Eine bessere Reihenfolge könnte nur den Fund verkürzen, nicht den Beweis; der hier gelernte Verzweiger verkürzt aber weder das eine noch das andere.**
 
 ## Modell
 
@@ -37,7 +37,7 @@ Alle Zahlen sind Messungen an festen Buchten (Platz 2), nachgerechnet in `tests/
 | 5 × 4 (60) | 77 285 | 84 578 | 86 676 | 119 658 | 63 % |
 | 6 × 3 (60) | 1 811 | 1 981 | 3 811 | 6 099 | 70 % |
 
-Die Reihenfolge der Kinder **zählt** (schlechteste zuerst: 1,5- bis 3,4-fach so viele Knoten wie die Engste Passung; zufällig 1,3- bis 2,1-fach), aber nur, bis die Regel gut ist. Der **Beweis** macht 46 bis 72 % der Knoten aus.
+Die Reihenfolge der Kinder **zählt** (schlechteste zuerst: 1,5- bis 3,4-fach so viele Knoten wie die Engste Passung; zufällig 1,1- bis 2,1-fach), aber nur, bis die Regel gut ist. Der **Beweis** macht 46 bis 72 % der Knoten aus.
 
 **B: Orakel und gelernter Verzweiger** (Summe der Knoten über alle Stufen / über die letzte Stufe, der Fund)
 
@@ -48,7 +48,7 @@ Die Reihenfolge der Kinder **zählt** (schlechteste zuerst: 1,5- bis 3,4-fach so
 | 4 × 4 (60) | 14 420 / 4 485 | 14 897 / 4 493 | 10 913 / 668 | 16 268 / 5 428 | +3,3 % | −24 % |
 | 5 × 4 (40) | 61 598 / 28 069 | 65 019 / 29 797 | 35 152 / 539 | 62 703 / 25 290 | +5,6 % | −43 % |
 
-Das Orakel kennt den optimalen Wert jedes Kindes (mit einer eigenen Suche je Kind, also viel teurer als das Sparen): Seine Ersparnis gegenüber der Engsten Passung ist die **Obergrenze jedes Verzweigers** (14, 4, 24 und 43 %). Sie liegt **fast nur im Fund** (5 × 4: 28 069 auf 539 Knoten), die **Beweisknoten** ändern sich dagegen kaum (5 × 4: 33 529 bei der Engsten Passung, 35 222 gelernt, 34 613 beim Orakel, 37 413 zufällig; höchstens 12 % Unterschied, durch die Zustandsmerken). Der gelernte Verzweiger liegt in jeder Zelle **über** der Regel.
+Das Orakel kennt den optimalen Wert jedes Kindes (mit einer eigenen Suche je Kind, also viel teurer als das Sparen): Seine Ersparnis gegenüber der Engsten Passung (14, 4, 24 und 43 %) ist ein **Richtwert dafür, wie viel eine Reihenfolge nach dem wahren Wert der Kinder höchstens im Fund sparen kann**, keine strenge Schranke für jeden Verzweiger. Sie liegt **fast nur im Fund** (5 × 4: 28 069 auf 539 Knoten), die **Beweisknoten** ändern sich dagegen kaum (5 × 4: 33 529 bei der Engsten Passung, 35 222 gelernt, 34 613 beim Orakel, 37 413 zufällig; höchstens 12 % Unterschied, durch die Zustandsmerken). Der gelernte Verzweiger liegt in jeder Zelle **über** der Regel.
 
 **C: Das Modell** (Gewichte der logistischen Regression)
 
@@ -66,8 +66,8 @@ Trainingsgenauigkeit 79 % (64 % der Kinder liegen auf einem optimalen Weg, Raten
 
 | Frage | Befund |
 |---|---|
-| **Ordnet ein gelernter Verzweiger besser als die Regel?** | Nein: Er ist in allen vier Zellen etwas schlechter (+3 bis +6 % Knoten) und trifft das optimale Kind seltener als die Regel. |
-| **Was spart ein perfektes Orakel?** | 4 bis 43 % der Knoten (Obergrenze jedes Verzweigers), fast nur in der letzten Stufe. |
+| **Ordnet ein gelernter Verzweiger besser als die Regel?** | Nein, dieser gelernte Verzweiger ordnet in allen gemessenen Zellen etwas schlechter (+3 bis +9 % Knoten); er trifft das optimale Kind in den Stichproben etwas seltener als die Regel (Unterschied von 3 bis 6 Zuständen, nicht gesichert). Ein stärkeres Modell ist nicht gemessen. |
+| **Was spart ein perfektes Orakel?** | 4 bis 43 % der Knoten (Richtwert für die Obergrenze), fast nur in der letzten Stufe. |
 | **Wo steckt der Rest?** | Im Beweis: 46 bis 72 % der Knoten; seine Größe hängt kaum von der Reihenfolge ab (höchstens 20 % Unterschied zwischen den Reihenfolgen in der Bucht 4 × 4, Nr. 23). |
 | **Kann das Orakel verlieren?** | Ja, an einer Bucht: 4 × 4, Nr. 23 spart das Orakel im Fund (135 auf 14 Knoten), braucht aber im Beweis mehr (2 679 gegen 2 473): insgesamt 2 693 gegen 2 608. |
 | **Ist die Regel immer die beste Reihenfolge?** | Nein: In der Bucht 4 × 4, Nr. 25 braucht die Regel 200 Knoten, zufällig 40, schlechteste zuerst 28, gelernt 145, das Orakel 12. |
@@ -78,7 +78,7 @@ Trainingsgenauigkeit 79 % (64 % der Kinder liegen auf einem optimalen Weg, Raten
 
 ## Ehrliche Grenzen
 
-- **Ein einfaches Modell.** Logistische Regression auf sieben Merkmalen; ein stärkeres Modell (zum Beispiel ein neuronales Netz mit Merkmalen der ganzen Bucht) wurde nicht gebaut. Das Orakel zeigt, wie viel höchstens zu holen wäre (bis 43 % in 5 × 4), nicht, ob es erreichbar ist.
+- **Ein einfaches Modell.** Logistische Regression auf sieben Merkmalen; ein stärkeres Modell (zum Beispiel ein neuronales Netz mit Merkmalen der ganzen Bucht) wurde nicht gebaut. Das Orakel gibt einen Richtwert, wie viel zu holen wäre (bis 43 % in 5 × 4; keine strenge Schranke), nicht, ob es erreichbar ist.
 - **Nur Knoten, keine Zeiten:** Der gelernte Verzweiger kostet je Kind eine Auswertung, das Orakel je Kind eine Suche.
 - **Restricted Relocation mit LB2.** Mit schwächerer Untergrenze (Stück 5: LB1) ändert sich der Beweisanteil; für das Pre-Marshalling (Stück 11) gilt die Messung nicht.
 - **Volle Buchten, Platz 2;** Training auf 3 × 3 bis 5 × 3 und 4 × 4; größere Buchten und anderer Platz sind nicht gemessen.
@@ -138,7 +138,7 @@ pip install -r requirements-dev.txt
 pytest tests/ -v
 ```
 
-95 Tests, rund eine Minute.
+95 Tests, rund 120 Sekunden (gemessen auf einem ausgelasteten Rechner).
 
 Gebaut mit Streamlit, Plotly und NumPy.
 

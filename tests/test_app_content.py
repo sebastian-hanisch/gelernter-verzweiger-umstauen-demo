@@ -49,7 +49,7 @@ def test_default_page_verdicts_for_the_default_cell():
     at = _run()
     text = _text(at)
     assert "4 × 3: Von 1 667 Knoten der Engsten Passung stecken 759 im Beweis und 908 im Fund: der Beweis ist 46 %." in text
-    assert "4 × 3: Gegenüber der Engsten Passung (1 667 Knoten) braucht der gelernte Verzweiger +3,6 % Knoten und das Orakel −14 %; das Orakel ist die Obergrenze jedes Verzweigers." in text
+    assert "4 × 3: Gegenüber der Engsten Passung (1 667 Knoten) braucht der gelernte Verzweiger +3,6 % Knoten und das Orakel −14 %; das Orakel ist ein Richtwert für die Obergrenze." in text
     assert any(w.value.endswith("Der gelernte Verzweiger ist hier schlechter als die Regel.") for w in at.warning)
 
 

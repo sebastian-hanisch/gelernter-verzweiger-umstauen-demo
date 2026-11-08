@@ -221,7 +221,7 @@ def verdict_proof(stats: dict, name: str) -> tuple[str, str]:
     share = stats["proof_share"]
     text = (f"{name}: Von {num(o['nodes_sum'])} Knoten der Engsten Passung stecken {num(o['proof_sum'])} im Beweis und {num(o['find_sum'])} im Fund: der Beweis ist {percent_text(share)}.")
     if _ge(share, C.PROOF_DOMINATES):
-        return "warning", text + " Der Beweis dominiert: Kein Verzweiger kann mehr als den Fund sparen."
+        return "warning", text + " Der Beweis dominiert: Eine bessere Reihenfolge kann kaum mehr als den Fund sparen."
     return "info", text + " Der Fund ist der größere Teil: Eine bessere Reihenfolge hat hier mehr Spielraum."
 
 
@@ -232,7 +232,7 @@ def verdict_learning(stats: dict, name: str) -> tuple[str, str]:
     learned = o["learned"]["nodes_sum"] / fit - 1
     oracle = o["oracle"]["nodes_sum"] / fit - 1
     text = (f"{name}: Gegenüber der Engsten Passung ({num(fit)} Knoten) braucht der gelernte Verzweiger {signed_percent_text(learned)} Knoten und das Orakel {signed_percent_text(oracle)}; "
-            f"das Orakel ist die Obergrenze jedes Verzweigers.")
+            f"das Orakel ist ein Richtwert für die Obergrenze.")
     if _le(learned, -C.LEARN_GAIN):
         return "success", text + " Der gelernte Verzweiger spart hier spürbar Knoten."
     if learned > C.LEARN_LOSS:

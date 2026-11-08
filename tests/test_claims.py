@@ -46,6 +46,8 @@ def test_the_proof_numbers_the_readme_quotes():
     assert min(b[K(s, l)]["proof_share"] for s, l, _ in C.PROOF_CELLS) > 0.45 and max(b[K(s, l)]["proof_share"] for s, l, _ in C.PROOF_CELLS) < 0.73
     ratios = [b[K(s, l)]["orders"]["worst"]["nodes_sum"] / b[K(s, l)]["orders"]["fit"]["nodes_sum"] for s, l, _ in C.PROOF_CELLS]
     assert round(min(ratios), 1) == 1.5 and round(max(ratios), 1) == 3.4
+    rand = [b[K(s, l)]["orders"]["random"]["nodes_sum"] / b[K(s, l)]["orders"]["fit"]["nodes_sum"] for s, l, _ in C.PROOF_CELLS]
+    assert round(min(rand), 1) == 1.1 and round(max(rand), 1) == 2.1                                                    # zufällig: 1,1- bis 2,1-fach
     for s, l, _ in C.PROOF_CELLS:                                                                  # Zufall und schlechteste zuerst sind nie besser als die Regel
         o = b[K(s, l)]["orders"]
         assert o["fit"]["nodes_sum"] < o["random"]["nodes_sum"] < o["worst"]["nodes_sum"]
